@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<% if signed_in? %>
+		<h2>Hello user</h2>
+		<%= link_to "Sign out", "logout" %>
+	<% else %>
+		<h1>Hello</h1>
+		<%= link_to "Login", "login" %>
+		<%= link_to "Sign up", "signup" %>
+	<% end %>
+</body>
+</html>
