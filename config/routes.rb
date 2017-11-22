@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get '/profile' => 'users#show'
 
   resources :users
-  resources :contacts
 
    get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
