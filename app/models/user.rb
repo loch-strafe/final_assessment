@@ -2,12 +2,12 @@ class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 	has_secure_password
 	has_many :authentications, dependent: :destroy
-  validates :first_name, presence: true, on: :update
-  validates :last_name, presence: true, on: :update
-  validates :phone_number, presence: true, on: :update
-  validates :password, presence: true, length: { :in => 7..20 }, on: :create
-  validates :email, uniqueness: {case_sensitive: false, message: "Error: An account with this email already exists."}
-  validates :email, presence: true, format: { with: (/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i),message: "Error: Invalid email format." }
+  # validates :first_name, presence: true, on: :update
+  # validates :last_name, presence: true, on: :update
+  # validates :phone_number, presence: true, on: :update
+  # validates :password, presence: true, length: { :in => 7..20 }, on: :create
+  # validates :email, uniqueness: {case_sensitive: false, message: "Error: An account with this email already exists."}
+  # validates :email, presence: true, format: { with: (/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i),message: "Error: Invalid email format." }
   enum role: [:admin, :friend]
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
@@ -26,4 +26,10 @@ class User < ApplicationRecord
     x = self.authentications.find_by(provider: 'facebook')
     return x.token unless x.nil?
   end
+
+  def self.search(search)
+    where("first_name LIKE ?", "%#{search}%") 
+    #where("last_name LIKE ?", "%#{search}%")
+  end
+
 end

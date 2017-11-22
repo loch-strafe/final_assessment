@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/edit' => 'users#edit'
   post '/update' => 'users#updates'
   get '/profile' => 'users#show'
+  get '/contacts' => 'users#index'
 
   resources :users
 

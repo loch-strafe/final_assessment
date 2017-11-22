@@ -1,0 +1,38 @@
+<script>
+$(document).ready(function () {
+    $("button").click(function(){
+        $(this).nextUntil('.button').toggle(300);
+    });
+});
+</script>
+
+<style>
+	.button {
+		background-color: white;
+		border: none;
+		/*margin-left: 82px;*/
+		font-size: 15px
+	}
+
+	.content {
+		margin-left: 10px;
+		padding-top: 5px;
+		font-size: 12px;
+		display: none;
+	}
+</style>
+
+<h5> Here are your contacts </h5>
+	<% @users.select{|user| user.id != current_user.id}.each do |user| %>
+		<h5><button class="button"> <%= user.first_name + ' ' + user.last_name %> </button> <%= link_to "delete", user_path(user.id), method: :delete, data: { confirm: "You sure?" } %>
+			<p class="content"> Mobile: <%= user.phone_number %> </p>
+			<p class="content"> Email: <%= user.email %> </p>
+			<p class="content"> Address: <%= user.address %> </p>
+	<% end %>
+
+	<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+	<%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+	<%= submit_tag "Search" %>
+	<% end %>
+
+	

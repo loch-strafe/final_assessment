@@ -1,14 +1,4 @@
 <h1>Edit!</h1>
 
-<%= form_for :user, url: '/users' do |f| %>
+<%= render 'form' %>
 
-  First name: <%= f.text_field :first_name %>
-  Last name: <%= f.text_field :last_name %>
-  Address: <%= f.text_field :address %>
-  Phone number: <%= f.text_field :phone_number %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
-<% end %>

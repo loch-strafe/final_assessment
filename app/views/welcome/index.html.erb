@@ -8,16 +8,10 @@
 	<% if signed_in? %>
 		<% if current_user.admin? %>
 		<h2> Hello <%= current_user.first_name %> </h2>
-		<h5> Here are your contacts </h5>
-			<% @users.each do |user| %>
-		    <tr><br>
-		      <td><%= user.first_name + ' ' + user.last_name %></td>
-		    </tr>
-		  <% end %>
+		<h5>Welcome to your online contact list</h5>
 		<% elsif current_user.friend? %>
 			<h2>Hello <%= current_user.first_name %> </h2>
-			<%= link_to "Sign out", "logout" %>
-			<%= link_to "Profile", "profile" %>
+			<h5>Thank you for being my friend</h5>
 		<% end %>
 	<% else %>
 		<h1>Hello</h1>
